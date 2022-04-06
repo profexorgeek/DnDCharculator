@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import CharacterModel from '@/models/CharacterModel';
 import Dnd5eModel from '@/models/Dnd5eModel';
 import LabeledField from './LabeledField.vue';
@@ -9,17 +9,16 @@ const props = defineProps({
     character: CharacterModel,
     core: Dnd5eModel
 });
-
 const emit = defineEmits(["update:character"]);
 
 </script>
 
 <template>
-    <h1>Character</h1>
     <div class="characterHeader">
         <LabeledField :dataLabel="'Name'" v-model:dataValue="character.Name" />
-        <LabeledField :dataLabel="'Race'" v-model:dataValue="character.Race" />
-        <LabeledField :dataLabel="'Class'" v-model:dataValue="character.Class" />
+        <LabeledDropdown :dataLabel="'Race'" :dataValues="core?.Races" v-model:dataSelected="character.Race" />
+        <LabeledDropdown :dataLabel="'Class'" :dataValues="core?.Classes" v-model:dataSelected="character.Class" />
+        <LabeledDropdown :dataLabel="'Alignment'" :dataValues="core?.Alignments" v-model:dataSelected="character.Alignment" />
     </div>
     <div class="abilityScores">
         <AbilityScore

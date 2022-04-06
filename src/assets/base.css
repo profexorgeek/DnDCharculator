@@ -36,6 +36,17 @@
   --section-gap: 160px;
 }
 
+/* DnD Charculator */
+:root {
+  
+  --size-text-small: 8pt;
+  --size-text-normal: 10pt;
+  --size-text-large: 12pt;
+
+  --size-input-field: 300px;
+  --width-ability-score: 70px;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);

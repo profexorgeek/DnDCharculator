@@ -20,12 +20,18 @@ watchEffect(async () => {
   <header>
     <CharacterHeader v-model:character="character" :core="core" />
   </header>
-
   <main>
     <ul>
       <li>Name: {{ character.Name }}</li>
       <li>Race: {{ character.Race }}</li>
       <li>Class: {{ character.Class }}</li>
+      <li>Class: {{ character.Alignment }}</li>
+      <li>Str: {{ character.Str }} ({{ character.StrMod }})</li>
+      <li>Dex: {{ character.Dex }} ({{ character.DexMod }})</li>
+      <li>Con: {{ character.Con }} ({{ character.ConMod }})</li>
+      <li>Int: {{ character.Int }} ({{ character.IntMod }})</li>
+      <li>Wis: {{ character.Wis }} ({{ character.WisMod }})</li>
+      <li>Cha: {{ character.Cha }} ({{ character.ChaMod }})</li>
     </ul>
   </main>
 </template>

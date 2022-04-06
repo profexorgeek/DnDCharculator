@@ -1,10 +1,10 @@
-import { computed } from 'vue';
-
 export default class CharacterModel {
     
-    public Name: string = 'Name';
+    public Name: string = 'Character Name';
     public Class: string = 'Human';
     public Race: string = 'Fighter';
+    public Alignment: string = 'Neutral';
+
     public Str: number = 10;
     public Dex: number = 10;
     public Con: number = 10;
@@ -36,8 +36,6 @@ export default class CharacterModel {
     public get ChaMod() : number {
         return this.getAbilityModifier(this.Cha);
     }
-
-
 
     constructor() {}
 
