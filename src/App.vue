@@ -14,22 +14,24 @@ watchEffect(async () => {
   console.log(`Got ${core.value?.Races?.length } races`);
 });
 
-const emit = defineEmits(["update:core"]);
-
 </script>
 
 <template>
   <header>
-    <CharacterHeader :character="character" :core="core" />
+    <CharacterHeader v-model:character="character" :core="core" />
   </header>
 
   <main>
-    
+    <ul>
+      <li>Name: {{ character.Name }}</li>
+      <li>Race: {{ character.Race }}</li>
+      <li>Class: {{ character.Class }}</li>
+    </ul>
   </main>
 </template>
 
 <style>
 
-/* @import './assets/base.css'; */
+@import './assets/base.css';
 
 </style>

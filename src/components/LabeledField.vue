@@ -5,11 +5,18 @@ const props = defineProps({
     dataValue: String
 })
 
-const emit = defineEmits(['update:dataLabel','update:dataValue']);
+const emit = defineEmits([
+    'update:dataValue'
+]);
 
 </script>
 
 <template>
     <div class="label">{{ dataLabel }}</div>
-    <div class="field"><input type="text" :value="dataValue" /></div>
+    <div class="input">
+        <input
+        type="text"
+        v-model="dataValue"
+        @input="$emit('update:dataValue', dataValue)"/>
+    </div>
 </template>
