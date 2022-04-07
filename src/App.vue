@@ -31,7 +31,7 @@ watchEffect(async () => {
       <li>Class: {{ character.Class }}</li>
       <li>Class: {{ character.Alignment }}</li>
       <li v-for="ability of character.Abilities"> {{ability.ShortName}}: {{ability.Base}} ({{ability.Modifier}})</li>
-      <li v-for="skill of character.Skills">{{skill.Name}}: {{skill.ModifierString}} ({{skill.Ability.ShortName}})</li>
+      <li v-for="skill of character.Skills">{{skill.Name}}: {{skill.ModifierString}} ({{skill.Ability.ShortName}}) - {{ skill.Proficient }}</li>
     </ul>
   </div>
 </template>

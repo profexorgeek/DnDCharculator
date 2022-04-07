@@ -29,7 +29,7 @@ export default class AbilityScoreModel {
 
     public get ModifierString(): string {
         let m = this.Modifier;
-        if(m > 0) {
+        if(m >= 0) {
             return `+${m}`;
         }
         return m.toString();

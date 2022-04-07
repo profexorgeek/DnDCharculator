@@ -5,6 +5,7 @@ import LabeledDropdown from './LabeledDropdown.vue';
 import AbilityScore from './AbilityScore.vue';
 import { computed } from '@vue/reactivity';
 import Dnd5eDataService from '@/services/Dnd5eDataService';
+import SkillScore from './SkillScore.vue';
 
 const props = defineProps({
     character: {type: CharacterModel, required:true}
@@ -76,7 +77,7 @@ const alignments = computed(() => Dnd5eDataService.Instance.Data.Alignments);
             <div class="col-2">
                 <label for="characterLevel">Level</label>
                 <input
-                    type="text"
+                    type="number"
                     id="characterLevel"
                     class="form-control"
                     placeholder="Lvl"
@@ -91,7 +92,7 @@ const alignments = computed(() => Dnd5eDataService.Instance.Data.Alignments);
             <div class="col">
                 <label for="characterAge">Age</label>
                 <input
-                    type="text"
+                    type="number"
                     id="characterAge"
                     class="form-control"
                     placeholder="Age"
@@ -146,21 +147,34 @@ const alignments = computed(() => Dnd5eDataService.Instance.Data.Alignments);
             <div class="col">
                 <label for="characterProficiency">Proficiency</label>
                 <input
-                    type="text"
+                    type="number"
                     id="characterProficiency"
                     class="form-control"
                     placeholder="Proficiency Bonus"
                     aria-label="Proficiency"
-                    v-model="character.Proficiency"
+                    v-model="character.Proficiency.Score"
                     @input="$emit('update:character', character)" />
             </div>
         </div>
 
         <!-- Abilities and Skills -->
-        <div class="row">
+        <div class="row mt-2">
             <!-- Ability Scores -->
             <div class="col-2">
-                <AbilityScore v-for="ability of character.Abilities" v-bind:ability="ability" />
+                <div class="border rounded p-2 h-100">
+                    <p class="fs-5 fw-bold">Abilities</p>
+                    <AbilityScore v-for="ability of character.Abilities" v-bind:ability="ability" />
+                </div>
+                
+            </div>
+
+            <!-- Skill Scores -->
+            <div class="col-4">
+                <div class="border rounded p-2 h-100">
+                    <p class="fs-5 fw-bold">Skills</p>
+                    <SkillScore v-for="skill of character.Skills" v-bind:skill="skill" />
+                </div>
+                
             </div>
 
         </div>

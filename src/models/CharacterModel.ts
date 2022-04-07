@@ -1,6 +1,6 @@
 import Dnd5eDataService from "@/services/Dnd5eDataService";
 import AbilityScoreModel from "./AbilityScoreModel";
-import type ProficiencyModel from "./ProficiencyModel";
+import ProficiencyModel from "./ProficiencyModel";
 import SkillModel from "./SkillModel";
 
 export default class CharacterModel {
@@ -17,7 +17,7 @@ export default class CharacterModel {
     public Skin: string = 'Medium';
     public Hair: string = 'Brown';
 
-    public Proficiency: number = 2;
+    public Proficiency: ProficiencyModel = new ProficiencyModel(2);
     public Abilities: AbilityScoreModel[] = [];
     public Skills: SkillModel[] = [];
 
@@ -45,7 +45,7 @@ export default class CharacterModel {
 
             for(let j = 0; j < abilityData.Skills.length; j++) {
                 let skillData = abilityData.Skills[j];
-                let skillModel = new SkillModel(skillData, abilityModel);
+                let skillModel = new SkillModel(skillData, abilityModel, model.Proficiency);
                 skills.push(skillModel);
             }
             model.Abilities.push(abilityModel);
