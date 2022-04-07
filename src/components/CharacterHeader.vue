@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import CharacterModel from '@/models/CharacterModel';
-import LabeledField from './LabeledField.vue';
-import LabeledDropdown from './LabeledDropdown.vue';
 import AbilityScore from './AbilityScore.vue';
 import { computed } from '@vue/reactivity';
 import Dnd5eDataService from '@/services/Dnd5eDataService';
@@ -11,7 +9,6 @@ const props = defineProps({
     character: {type: CharacterModel, required:true}
 });
 const emit = defineEmits(["update:character"]);
-
 const races = computed(() => Dnd5eDataService.Instance.Data.Races);
 const classes = computed(() => Dnd5eDataService.Instance.Data.Classes);
 const alignments = computed(() => Dnd5eDataService.Instance.Data.Alignments);
