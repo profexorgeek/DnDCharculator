@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps({
-    dataLabel: String,
-    dataValue: String
+    dataLabel: {type: String, required:true},
+    dataValue: {type: String, required:true}
 })
 
 const emit = defineEmits(['update:dataValue']);

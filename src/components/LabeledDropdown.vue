@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const props = defineProps({
-    dataLabel: String,
-    dataSelected: String,
-    dataValues: Array
+    dataLabel: {type: String, required:true},
+    dataSelected: {type: String, required:true},
+    dataValues: {type: Array, required:true}
 });
 const emit = defineEmits(['update:dataSelected']);
 </script>

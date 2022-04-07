@@ -2,42 +2,36 @@
 import { ref, watchEffect } from 'vue';
 import CharacterHeader from './components/CharacterHeader.vue'
 import CharacterModel from './models/CharacterModel';
-import Dnd5eModel from './models/Dnd5eModel';
+import Dnd5eDataService from './services/Dnd5eDataService';
 
 const CORE_DATA_URL = "/data/dnd5e.json";
-
-let character = ref( new CharacterModel() );
-let core = ref (new Dnd5eModel() );
+const character = ref( new CharacterModel() );
+let modelCreated = false;
 
 watchEffect(async () => {
-  core.value = await (await fetch(CORE_DATA_URL)).json();
-  console.log(`Got ${core.value?.Races?.length } races`);
-});
 
+  await Dnd5eDataService.Instance.initialize();
+
+  // populate the character model once when data is updated
+  if(!modelCreated && character.value.Abilities.length == 0) {
+    character.value = CharacterModel.Create();
+    modelCreated = true;
+  }
+
+});
 </script>
 
 <template>
-  <header>
-    <CharacterHeader v-model:character="character" :core="core" />
-  </header>
-  <main>
+  <CharacterHeader v-model:character="character" />
+
+  <div>
     <ul>
       <li>Name: {{ character.Name }}</li>
       <li>Race: {{ character.Race }}</li>
       <li>Class: {{ character.Class }}</li>
       <li>Class: {{ character.Alignment }}</li>
-      <li>Str: {{ character.Str }} ({{ character.StrMod }})</li>
-      <li>Dex: {{ character.Dex }} ({{ character.DexMod }})</li>
-      <li>Con: {{ character.Con }} ({{ character.ConMod }})</li>
-      <li>Int: {{ character.Int }} ({{ character.IntMod }})</li>
-      <li>Wis: {{ character.Wis }} ({{ character.WisMod }})</li>
-      <li>Cha: {{ character.Cha }} ({{ character.ChaMod }})</li>
+      <li v-for="ability of character.Abilities"> {{ability.ShortName}}: {{ability.Base}} ({{ability.Modifier}})</li>
+      <li v-for="skill of character.Skills">{{skill.Name}}: {{skill.ModifierString}} ({{skill.Ability.ShortName}})</li>
     </ul>
-  </main>
+  </div>
 </template>
-
-<style>
-
-@import './assets/base.css';
-
-</style>

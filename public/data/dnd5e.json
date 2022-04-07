@@ -10,6 +10,55 @@
         "Half-Orc",
         "Tiefling"
     ],
+    "Abilities": [
+        {
+            "Name": "Strength",
+            "Skills": [
+                "Athletics"
+            ]
+        },
+        {
+            "Name": "Dexterity",
+            "Skills": [
+                "Acrobatics",
+                "Sleight of Hand",
+                "Stealth"
+            ]
+        },
+        {
+            "Name": "Constitution",
+            "Skills": []
+        },
+        {
+            "Name": "Intelligence",
+            "Skills": [
+                "Arcana",
+                "History",
+                "Investigation",
+                "Nature",
+                "Religion"
+            ]
+        },
+        {
+            "Name": "Wisdom",
+            "Skills": [
+                "Animal Handling",
+                "Insight",
+                "Medicine",
+                "Perception",
+                "Survival"
+            ]
+        },
+        {
+            "Name": "Charisma",
+            "Skills": [
+                "Deception",
+                "Intimidation",
+                "Performance",
+                "Persuasion"
+            ]
+        }
+    ],
     "Classes": [
         "Barbarian",
         "Bard",
