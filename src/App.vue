@@ -5,7 +5,7 @@ import CharacterModel from './models/CharacterModel';
 import Dnd5eDataService from './services/Dnd5eDataService';
 
 const CORE_DATA_URL = "/data/dnd5e.json";
-const character = ref( new CharacterModel() );
+let character = ref<CharacterModel>( new CharacterModel() );
 let modelCreated = false;
 
 watchEffect(async () => {
@@ -22,7 +22,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <CharacterHeader v-model:character="character" />
+  <CharacterHeader v-model:character="(character as CharacterModel)" />
 
   <div>
     <ul>
