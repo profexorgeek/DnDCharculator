@@ -1,4 +1,82 @@
 {
+    "Race": [
+        {
+            "Id": "hilldwarf",
+            "Name": "Dwarf: Hill",
+            "PHB": 20,
+            "Speed": 25,
+            "Size": "Medium",
+            "AbilityBonuses": [
+                {"Constitution": 2},
+                {"Wisdom":1}
+            ],
+            "Traits": [
+                "Darkvision",
+                "Dwarven Risilience - Advantage on save vs poison",
+                "History checks related to stonework gain double proficiency bonus",
+                "Add your current character level to your hitpoint maximum"
+            ],
+            "WeaponProficiencies": [
+                "Battleaxe",
+                "Handaxe",
+                "Light Hammer",
+                "Warhammer"
+            ],
+            "ArmorProficiencies": [],
+            "ToolProficiencies": [
+                "Smith",
+                "Brewer",
+                "Mason"
+            ],
+            "Languages":
+            [
+                "Common",
+                "Dwarvish"
+            ]
+        },
+        {
+            "Id": "mtndwarf",
+            "Name": "Dwarf: Mountain",
+            "PHB": 20,
+            "Speed": 25,
+            "Size": "Medium",
+            "AbilityBonuses": [
+                {"Strength": 2},
+                {"Constitution": 2}
+            ],
+            "Traits": [
+                "Darkvision",
+                "Dwarven Risilience - Advantage on save vs poison",
+                "History checks related to stonework gain double proficiency bonus"
+            ],
+            "WeaponProficiencies": [
+                "Battleaxe",
+                "Handaxe",
+                "Light Hammer",
+                "Warhammer"
+            ],
+            "ArmorProficiencies":[
+                "Light Armor",
+                "Medium Armor"
+            ],
+            "ToolProficiencies": [
+                "Smith",
+                "Brewer",
+                "Mason"
+            ],
+            "Languages":
+            [
+                "Common",
+                "Dwarvish"
+            ]
+        },
+        {"Name": "Elf: High"},
+        {"Name": "Elf: Wood"},
+        {"Name": "Elf: Drow"},
+        {"Name": "Elf: Drow"},
+        {"Name": "Halfling: Stout"},
+        {"Name": "Halfling: Lightfoot"}
+    ],
     "Races": [
         "Dwarf",
         "Elf",
