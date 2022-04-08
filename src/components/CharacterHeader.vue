@@ -1,9 +1,13 @@
 <script lang="ts" setup>
-import CharacterModel from '@/models/CharacterModel';
-import AbilityScore from './AbilityScore.vue';
 import { computed } from '@vue/reactivity';
+
+import CharacterModel from '@/models/CharacterModel';
 import Dnd5eDataService from '@/services/Dnd5eDataService';
+
+import FieldText from './FieldText.vue';
+import FieldNumber from './FieldNumber.vue';
 import SkillScore from './SkillScore.vue';
+import AbilityPanel from './AbilityPanel.vue';
 
 const props = defineProps({
     character: {type: CharacterModel, required:true}
@@ -15,166 +19,48 @@ const alignments = computed(() => Dnd5eDataService.Instance.Data.Alignments);
 </script>
 
 <template>
+
     <div class="container">
+
         <!-- Character Core Row -->
         <div class="row">
             <div class="col">
-                <label for="characterName">Name</label>
-                <input
-                    type="text"
-                    id="characterName"
-                    class="form-control"
-                    placeholder="Character Name"
-                    aria-label="Name"
-                    v-model="character.Name"
-                    @input="$emit('update:character', character)" />
+                <FieldText :fieldName="'Name'" :fieldPrompt="'Character Name'" v-model:fieldValue="character.Name" />
             </div>
             <div class="col-2">
-                <label for="characterRace">Race</label>
-                <select 
-                    id="characterRace"
-                    class="form-control"
-                    aria-label="Race"
-                    v-model="character.Race"
-                    @change="$emit('update:character', character)">
-                        <option 
-                        v-for="item of races"
-                        :value="item"
-                        :selected="item == character.Race">{{ item }}</option>
-                </select>
+                <FieldText :fieldName="'Race'" :fieldPrompt="'Race'" v-model:fieldValue="character.Race" />
             </div>
             <div class="col-2">
-                <label for="characterClass">Class</label>
-                <select 
-                    id="characterClass"
-                    class="form-control"
-                    aria-label="Class"
-                    v-model="character.Class"
-                    @change="$emit('update:character', character)">
-                        <option 
-                        v-for="item of classes"
-                        :value="item"
-                        :selected="item == character.Class">{{ item }}</option>
-                </select>
+                <FieldText :fieldName="'Class'" :fieldPrompt="'Class'" v-model:fieldValue="character.Class" />
             </div>
             <div class="col-2">
-                <label for="characterAlignment">Alignment</label>
-                <select 
-                    id="characterAlignment"
-                    class="form-control"
-                    aria-label="Alignment"
-                    v-model="character.Alignment"
-                    @change="$emit('update:character', character)">
-                        <option 
-                        v-for="item of alignments"
-                        :value="item"
-                        :selected="item == character.Class">{{ item }}</option>
-                </select>
+                <FieldText :fieldName="'Alignment'" :fieldPrompt="'Alignment'" v-model:fieldValue="character.Alignment" />
             </div>
             <div class="col-2">
-                <label for="characterLevel">Level</label>
-                <input
-                    type="number"
-                    id="characterLevel"
-                    class="form-control"
-                    placeholder="Lvl"
-                    aria-label="Level"
-                    v-model="character.Level"
-                    @input="$emit('update:character', character)" />
+                <FieldNumber :fieldName="'Level'" :fieldPrompt="'Level'" v-model:fieldValue="character.Level" />
             </div>
         </div>
 
         <!-- Character Detail Row -->
         <div class="row">
             <div class="col">
-                <label for="characterAge">Age</label>
-                <input
-                    type="number"
-                    id="characterAge"
-                    class="form-control"
-                    placeholder="Age"
-                    aria-label="Age"
-                    v-model="character.Age"
-                    @input="$emit('update:character', character)" />
+                <FieldNumber :fieldName="'Age'" :fieldPrompt="'Age'" v-model:fieldValue="character.Age" />
             </div>
             <div class="col">
-                <label for="characterHeight">Height</label>
-                <input
-                    type="text"
-                    id="characterHeight"
-                    class="form-control"
-                    placeholder="Ht"
-                    aria-label="Height"
-                    v-model="character.Height"
-                    @input="$emit('update:character', character)" />
+                <FieldText :fieldName="'Height'" :fieldPrompt="'Height'" v-model:fieldValue="character.Height" />
             </div>
             <div class="col">
-                <label for="characterWeight">Weight</label>
-                <input
-                    type="text"
-                    id="characterWeight"
-                    class="form-control"
-                    placeholder="Wt"
-                    aria-label="Weight"
-                    v-model="character.Weight"
-                    @input="$emit('update:character', character)" />
+                <FieldText :fieldName="'Weight'" :fieldPrompt="'Weight'" v-model:fieldValue="character.Weight" />
             </div>
             <div class="col">
-                <label for="characterEyes">Eyes</label>
-                <input
-                    type="text"
-                    id="characterEyes"
-                    class="form-control"
-                    placeholder="Eye"
-                    aria-label="Eye Color"
-                    v-model="character.Eyes"
-                    @input="$emit('update:character', character)" />
+                <FieldText :fieldName="'Eyes'" :fieldPrompt="'Eyes'" v-model:fieldValue="character.Eyes" />
             </div>
             <div class="col">
-                <label for="characterHair">Hair</label>
-                <input
-                    type="text"
-                    id="characterHair"
-                    class="form-control"
-                    placeholder="Eye"
-                    aria-label="Eye Color"
-                    v-model="character.Eyes"
-                    @input="$emit('update:character', character)" />
+                <FieldText :fieldName="'Hair'" :fieldPrompt="'Hair'" v-model:fieldValue="character.Hair" />
             </div>
             <div class="col">
-                <label for="characterProficiency">Proficiency</label>
-                <input
-                    type="number"
-                    id="characterProficiency"
-                    class="form-control"
-                    placeholder="Proficiency Bonus"
-                    aria-label="Proficiency"
-                    v-model="character.Proficiency.Score"
-                    @input="$emit('update:character', character)" />
+                <FieldNumber :fieldName="'Proficiency'" :fieldPrompt="'Hair'" v-model:fieldValue="character.Proficiency.Score" />
             </div>
         </div>
-
-        <!-- Abilities and Skills -->
-        <div class="row mt-2">
-            <!-- Ability Scores -->
-            <div class="col-2">
-                <div class="border rounded p-2 h-100">
-                    <p class="fs-5 fw-bold">Abilities</p>
-                    <AbilityScore v-for="ability of character.Abilities" v-bind:ability="ability" />
-                </div>
-                
-            </div>
-
-            <!-- Skill Scores -->
-            <div class="col-4">
-                <div class="border rounded p-2 h-100">
-                    <p class="fs-5 fw-bold">Skills</p>
-                    <SkillScore v-for="skill of character.Skills" v-bind:skill="skill" />
-                </div>
-                
-            </div>
-
-        </div>
-
     </div>
 </template>

@@ -3,6 +3,8 @@ import { ref, watchEffect } from 'vue';
 import CharacterHeader from './components/CharacterHeader.vue'
 import CharacterModel from './models/CharacterModel';
 import Dnd5eDataService from './services/Dnd5eDataService';
+import AbilityPanel from './components/AbilityPanel.vue';
+import SkillsPanel from './components/SkillsPanel.vue';
 
 const CORE_DATA_URL = "/data/dnd5e.json";
 let character = ref<CharacterModel>( new CharacterModel() );
@@ -22,30 +24,26 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="modal fade" id="bonusModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">Header</div>
-        <div class="modal-body">Body goes here</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <CharacterHeader v-model:character="(character as CharacterModel)" />
       </div>
     </div>
-  </div>
+    <div class="row">
+      <div class="col-2">
+        <AbilityPanel v-model:character="(character as CharacterModel)" />
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col">
+            <SkillsPanel v-model:character="(character as CharacterModel)" />
+          </div>
+        </div>
+      </div>
+      <div class="col">
 
-  <CharacterHeader v-model:character="(character as CharacterModel)" />
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bonusModal">Add Bonus</button>
-
-  <div>
-    <ul>
-      <li>Name: {{ character.Name }}</li>
-      <li>Race: {{ character.Race }}</li>
-      <li>Class: {{ character.Class }}</li>
-      <li>Class: {{ character.Alignment }}</li>
-      <li v-for="ability of character.Abilities"> {{ability.ShortName}}: {{ability.Base}} ({{ability.Modifier}})</li>
-      <li v-for="skill of character.Skills">{{skill.Name}}: {{skill.ModifierString}} ({{skill.Ability.ShortName}}) - {{ skill.Proficient }}</li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
