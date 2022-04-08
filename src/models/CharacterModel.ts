@@ -1,5 +1,6 @@
 import Dnd5eDataService from "@/services/Dnd5eDataService";
 import AbilityScoreModel from "./AbilityScoreModel";
+import type BonusModel from "./BonusModel";
 import ProficiencyModel from "./ProficiencyModel";
 import SkillModel from "./SkillModel";
 
@@ -20,6 +21,7 @@ export default class CharacterModel {
     public Proficiency: ProficiencyModel = new ProficiencyModel(2);
     public Abilities: AbilityScoreModel[] = [];
     public Skills: SkillModel[] = [];
+    public Bonuses: BonusModel[] = [];
 
     constructor() {}
 

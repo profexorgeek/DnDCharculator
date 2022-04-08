@@ -22,7 +22,21 @@ watchEffect(async () => {
 </script>
 
 <template>
+  <div class="modal fade" id="bonusModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">Header</div>
+        <div class="modal-body">Body goes here</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <CharacterHeader v-model:character="(character as CharacterModel)" />
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bonusModal">Add Bonus</button>
 
   <div>
     <ul>
